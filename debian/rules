@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+SHEEL := /bin/bash
+
+override_dh_auto_build:
+	mkdir -p bin
+	set -ex && \
+		export CGO_ENABLED=1 && \
+		go build \
+			-mod vendor -buildmode pie -v \
+			-ldflags "-s -w \
+				-X github.com/operator-framework/ansible-operator-plugins/internal/version.Version=v1.37.1 \
+				-X github.com/operator-framework/ansible-operator-plugins/internal/version.GitVersion=v1.37.1 \
+				-X github.com/operator-framework/ansible-operator-plugins/internal/version.GitCommit=50d76a42ae96b1c33c61e06df9c7e3780e83e7c1 \
+				-X github.com/operator-framework/ansible-operator-plugins/internal/version.KubernetesVersion=v1.31.0 \
+				-X github.com/operator-framework/ansible-operator-plugins/internal/version.ImageVersion=v1.37.1 \
+			" \
+			-o ./bin/ansible-operator ./cmd/ansible-operator
+
+override_dh_auto_install:
+	install -Dpm755 -d debian/tmp/usr/bin
+	install -Dpm755 -d debian/tmp/usr/share/bash-completion/completions
+	install -Dpm755 -t debian/tmp/usr/bin bin/*
+	./bin/ansible-operator completion bash > debian/tmp/usr/share/bash-completion/completions/ansible-operator
+
+override_dh_auto_test:
+
+override_dh_auto_clean:
+
+%:
+	dh $@
