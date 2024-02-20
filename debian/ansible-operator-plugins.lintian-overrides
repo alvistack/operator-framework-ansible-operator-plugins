@@ -1,0 +1,4 @@
+ansible-operator-plugins: copyright-without-copyright-notice
+ansible-operator-plugins: initial-upload-closes-no-bugs
+ansible-operator-plugins: no-manual-page
+ansible-operator-plugins: zero-byte-file-in-doc-directory
