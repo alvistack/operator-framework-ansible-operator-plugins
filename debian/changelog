@@ -1,0 +1,5 @@
+ansible-operator-plugins (100:1.42.2-1) UNRELEASED; urgency=medium
+
+  * https://github.com/operator-framework/ansible-operator-plugins/releases/tag/v1.42.2
+
+ -- Wong Hoi Sing Edison <hswong3i@pantarei-design.com>  Fri, 20 Mar 2026 11:24:21 +0800

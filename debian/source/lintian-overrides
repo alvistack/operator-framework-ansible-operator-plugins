@@ -1,0 +1,3 @@
+ansible-operator-plugins source: file-without-copyright-information
+ansible-operator-plugins source: no-debian-changes
+ansible-operator-plugins source: source-is-missing
